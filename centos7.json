@@ -1,0 +1,48 @@
+{
+ "builders": [
+    {
+      "type": "vmware-iso",
+      "boot_command": [
+        "<tab> text ks=http://10.230.36.234/ks/centos7packer.cfg<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": 300000,
+      "name": "vmware-packer",
+      "guest_os_type": "centos-64",
+      "headless": false,
+      "http_directory": "http",
+      "iso_urls": [
+        "CentOS-7-x86_64-Minimal-1708.iso",
+        "http://mirrors.ocf.berkeley.edu/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1708.iso"
+      ],
+      "iso_checksum_type": "sha256",
+      "iso_checksum": "bba314624956961a2ea31dd460cd860a77911c1e0a56e4820a12b9c5dad363f5",
+      "ssh_username": "root",
+      "ssh_password": "root123",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
+      "vmx_data": {
+           "memsize": "16384",  
+           "numvcpus": "1",
+           "cpuid.coresPerSocjet": "1"
+      }
+   } 
+],
+
+
+
+"post-processors": [
+     {
+      "type": "shell-local",
+      "inline": [ "/Applications/ovftool/ovftool  /Users/jerry/Packer/output-vmware-packer/packer-vmware-packer.vmx  /Users/jerry/Packer/output-vmware-packer/packer-vmware-packer.ova" ]
+     },
+     {
+         "files": [
+           "Packer.ova"
+         ],
+         "type": "artifice"
+     }
+]
+
+}
