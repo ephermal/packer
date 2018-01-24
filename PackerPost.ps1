@@ -20,17 +20,25 @@ winrm s winrm/config/service/auth '@{CredSSP="true"}'
 winrm s winrm/config/listener?Address=*+Transport=HTTP '@{Port="5985"}'
 netsh advfirewall firewall set rule group="remote administration" new enable=yes
 netsh advfirewall firewall add rule name="WinRM-5985" dir=in action=allow protocol=TCP localport=5985
+netsh advfirewall firewall add rule name="WinRM 5986" protocol=TCP dir=in localport=5986 action=allow
+
+net stop winrm
+sc.exe config winrm start=auto
+net start winrm
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine -Force`
 
 
 #DNS Info for Particular Site
+#Derek's Powershell Script - maybe a function ?
 
 
 
 #VeloCloud Install
+#This can be separated to a different template if needed
 
 
 
 
 #Start the OOBE Process
 #Start-Process -FilePath C:\Windows\System32\Sysprep\Sysprep.exe -ArgumentList '/generalize /oobe /quiet'
-
