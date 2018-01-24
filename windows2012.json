@@ -42,8 +42,21 @@
     "cpus": "2",
     "memory_size": "16384",
     "disk_size": "261440"
-  }
+  },
 
+"post-processors": [
+     {
+      "type": "shell-local",
+      "inline": [ "/Applications/ovftool/ovftool  /Users/jerry/Packer/output-vmware-iso/packer-vmware-iso.vmx  /Users/jerry/Packer/output-vmware-iso/Windows2012R2.ova" ]
+     },
+     {
+         "files": [
+           "Windows2012R2.ova"
+         ],
+         "type": "artifice"
+     }
+
+]
 
 
 
