@@ -23,12 +23,10 @@ netsh advfirewall firewall add rule name="WinRM-5985" dir=in action=allow protoc
 
 
 #DNS Info for Particular Site
-#Derek's Powershell Script - maybe a function ?
 
 
 
 #VeloCloud Install
-#This can be separated to a different template if needed
 
 
 
