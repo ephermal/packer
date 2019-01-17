@@ -30,7 +30,6 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine -Force`
 
 
 #DNS Info for Particular Site
-#Derek's Powershell Script - maybe a function ?
 
 
 
